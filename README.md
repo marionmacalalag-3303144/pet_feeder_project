@@ -49,14 +49,62 @@
 
 
 ## Logic Flow Summary
+---
 
-```text
-1. At scheduled time (e.g., 8AM or 6PM), check if feeding has occurred.
-2. If not:
-   - Rotate servo to dispense food.
-   - Measure bowl weight before and after.
-   - Verify food was dispensed successfully.
-   - Check pet presence (optional).
-   - Wait 10 minutes and monitor bowl weight.
-   - If food was eaten, log success and show green light.
-   - If not, trigger alert and show red light.
+## ⏰ 1. Read Current Time
+- Retrieve the system’s current time using the real-time clock.
+
+---
+
+## 📅 2. Check Feeding Schedule
+- If the time is **8:00 AM** or **6:00 PM**, proceed to dispense food.
+- If not, keep the feeder inactive.
+
+---
+
+## 🍽️ 3. Dispense Food
+- Activate the **servo motor** to dispense food into the bowl.
+- Dispensed food type depends on feeder:
+  - **Dog feeder** → Dispenses dog food
+  - **Cat feeder** → Dispenses cat food
+
+---
+
+## 📦 4. Verify Dispense Success
+- Check if the **food level in the container** is greater than 0%.
+  - If **yes**:
+    - Store the current food level and bowl weight in the database.
+  - If **no**:
+    - Trigger an **alert**.
+    - Send an error message to staff indicating the dispense failed.
+
+---
+
+## 🐕 5. Check Pet Presence
+- Detect whether the pet is currently present using motion or proximity sensors.
+  - If **not present**:
+    - Trigger an **alert** to staff indicating the pet is missing.
+  - If **present**:
+    - Proceed to monitor consumption.
+
+---
+
+## ⏳ 6. Monitor Consumption
+- Wait **10 minutes** after dispensing.
+- Retrieve the **starting bowl weight** from the database.
+- Measure the **current bowl weight**.
+
+---
+
+## ⚖️ 7. Evaluate Consumption
+- Calculate the difference between starting and current bowl weight.
+
+### Logic:
+- If **weight change = 0**:
+  - Trigger an **alert**.
+  - Send an error message to staff indicating the food was not eaten.
+- If **weight change > 0**:
+  - Display a **green light** on the feeder.
+  - Send a success message confirming food was consumed.
+
+---
