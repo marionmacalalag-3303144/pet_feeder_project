@@ -2,9 +2,35 @@
 
 ## Overview
 
-This project simulates and designs a low-cost, programmable automated pet feeder for use in animal shelters. The system is capable of dispensing food at scheduled times, monitoring consumption, and alerting staff if any issues arise (e.g., food not dispensed, pet not present, food not eaten).
+**Problem Statement** : A local animal shelter is currently facing challenges in ensuring timely and accurate feeding of their cats and dogs. Staff of the animal shelter are often preoccupied with other responsibilities which often lead to missed schedules for feeding. To improve overall efficiency and animal welfare there is a need to create a low cost programmable automated Pet Feeder System.
 
-The goal is to create a reliable, scalable solution using affordable components such as servo motors, load cells, and basic sensors, with logic that can be implemented on microcontrollers like Arduino or ESP32.
+**Goal of the Automated Pet Feeder System** : Automate feeding of cats and dogs based on scheduled times and food consumption status, alerting staff to any food consumption issues or food dispensing issues. 
+
+**Assumptions** : 
+1. Feeding Schedule 
+- Dogs and cats have the exact same feeding time which is pre assigned in the system
+- Feeding occurs twice daily at fixed times : 8AM and 6:00PM
+2. Food Consumption Monitoring 
+- Weight Sensors are available to detect food consumption 
+- Weight is logged from food dispensing time and 10 minutes after food dispensing.
+- System can distinguish between consumed food vs spilled food 
+
+3. Alert System 
+- A red alert is triggered when one of the following happens : 
+- No food is dispensed during a set time 
+- Food is dispensed but pet did not eat 
+- Pet is not present near the feeder
+
+4. Feeder Types
+- There are two types of feeders
+- One for cats dispensing cat food
+- One for dogs dispensing dog food.
+- Each of the feeder follow the same decision logic and alters just a different type of food is dispensed 
+
+5. Identification and registration 
+- Only registered animals at the shelter are eligible for automatic food dispensing 
+- There is a sensor in the feeder which indicates if a pet is currently present 
+
 
 ---
 
@@ -19,51 +45,8 @@ The goal is to create a reliable, scalable solution using affordable components 
 - 💾 **Data Logging**: Stores feeding events, sensor readings, and alerts in a database or cloud service.
 - 💡 **Status Indicators**: Visual feedback via LEDs (e.g., green for success, red for error).
 
----
+----
 
-## Hardware Requirements
-
-| Component             | Description                          |
-|----------------------|--------------------------------------|
-| Microcontroller       | ESP32, Arduino Uno, or Raspberry Pi |
-| Servo Motor           | SG90 or equivalent                   |
-| Load Cell + HX711     | For bowl weight measurement          |
-| Food Level Sensor     | IR or ultrasonic sensor              |
-| Pet Presence Sensor   | PIR, RFID, or BLE beacon             |
-| LED Indicator         | RGB LED or Neopixel strip            |
-| Wi-Fi Module          | Built-in (ESP32) or external         |
-| Power Supply          | 5V/12V adapter or battery pack       |
-
----
-
-## Software Requirements
-
-- Arduino IDE or PlatformIO (for microcontroller code)
-- Python (for simulation or Raspberry Pi implementation)
-- Firebase / Google Sheets API (for cloud logging)
-- Twilio / SMTP (for alerts via SMS or email)
-
----
-
-## Installation & Setup
-
-1. **Hardware Assembly**
-   - Connect servo motor to dispensing mechanism.
-   - Mount load cell under feeding bowl.
-   - Install sensors for food level and pet presence.
-   - Connect components to microcontroller.
-
-2. **Software Deployment**
-   - Flash the microcontroller with the feeder logic.
-   - Configure feeding times, portion sizes, and thresholds.
-   - Set up cloud logging and alert services.
-
-3. **Testing**
-   - Calibrate load cell.
-   - Simulate feeding cycles.
-   - Verify alerts and data logging.
-
----
 
 ## Logic Flow Summary
 
@@ -74,6 +57,6 @@ The goal is to create a reliable, scalable solution using affordable components 
    - Measure bowl weight before and after.
    - Verify food was dispensed successfully.
    - Check pet presence (optional).
-   - Wait 10–45 minutes and monitor bowl weight.
+   - Wait 10 minutes and monitor bowl weight.
    - If food was eaten, log success and show green light.
    - If not, trigger alert and show red light.
