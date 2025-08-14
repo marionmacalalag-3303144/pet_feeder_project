@@ -1,4 +1,4 @@
-# 🐾 Automated Pet Feeder System
+# 🐾 Assignment 1 : Automated Pet Feeder System
 
 ## Overview
 
