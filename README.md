@@ -69,5 +69,5 @@ This project outlines the development of a **low-cost automated pet feeder syste
 ## 📫 Contact
 For any questions or clarifications, please contact:  
 **Email:** u3303144@uni.canberra.edu.au  
-**GitHub Username:** [your-github-handle]
+**GitHub Username:** marionmacalalag-3303144
 
