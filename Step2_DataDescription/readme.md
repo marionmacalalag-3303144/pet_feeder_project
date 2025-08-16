@@ -21,8 +21,7 @@ The following item is included in this folder:
 This step focuses on identifying and organizing the technical components of the automated pet feeder system. The data table provides clarity on:
 
 - What data the system receives and processes
-- What actions the system performs in response
-- The conditions and constraints under which the system operates
+- Types of data the petfeeder processes.
 
 ---
 
@@ -32,4 +31,4 @@ Defining inputs, outputs, and operational parameters ensures that the system beh
 
 ---
 
-For the next phase, refer to **Step 3 – System Design and Component Selection**.
+For the next phase, refer to **Step 3 – Flow chart
