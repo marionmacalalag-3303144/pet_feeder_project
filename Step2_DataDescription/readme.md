@@ -12,7 +12,7 @@ The following item is included in this folder:
   A comprehensive table listing:
   - **Inputs** to the system (e.g., sensors, user settings)
   - **Outputs** from the system (e.g., motor actions, notifications)
-  - **Operational Parameters** such as timing intervals, thresholds, and control logic
+  - **Type of data** such as boleean, int etc.
 
 ---
 
